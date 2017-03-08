@@ -31,24 +31,21 @@ func displayMemoryRoutine(displayCh <-chan bool) chan bool {
 	go func() {
 		t1 := time.Now().UTC()
 		var prevDisplay bool
-		for {
-			select {
-			case ok := <-displayCh:
-				t2 := time.Now().UTC()
-				if !ok {
-					if t1.Sub(t2) > timeThreshold {
-						displayRecvCh <- false
-						// Reset the time.
-						t1 = time.Now().UTC()
-						prevDisplay = false
-						continue
-					}
-					displayRecvCh <- prevDisplay
+		for ok := range displayCh {
+			t2 := time.Now().UTC()
+			if !ok {
+				if t1.Sub(t2) > timeThreshold {
+					displayRecvCh <- false
+					// Reset the time.
+					t1 = time.Now().UTC()
+					prevDisplay = false
 					continue
 				}
-				displayRecvCh <- ok
-				prevDisplay = ok
+				displayRecvCh <- prevDisplay
+				continue
 			}
+			displayRecvCh <- ok
+			prevDisplay = ok
 		}
 	}()
 

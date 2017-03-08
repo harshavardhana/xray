@@ -39,10 +39,10 @@
 			"revisionTime": "2017-02-27T07:32:28Z"
 		},
 		{
-			"checksumSHA1": "vzwMDikjEuZn3TmUl2FBZH72v3A=",
+			"checksumSHA1": "aijovKP9Bln7qd9SVjN4DNSkJ1g=",
 			"path": "github.com/minio/go-cv",
-			"revision": "5a48d1d00d4bbbc5464ecf325dd9deb77ce07928",
-			"revisionTime": "2017-03-02T09:59:00Z"
+			"revision": "b10b360038e059aa4d1d8a4392a106480d6bc988",
+			"revisionTime": "2017-03-08T08:23:55Z"
 		},
 		{
 			"checksumSHA1": "neH34/65OXeKHM/MlV8MbhcdFBc=",

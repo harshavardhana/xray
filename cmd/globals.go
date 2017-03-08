@@ -25,14 +25,15 @@ import (
 	"unsafe"
 
 	"github.com/minio/go-cv"
+	"github.com/minio/xray/cascade"
 )
 
 func init() {
 	for i := 0; i < globalDetectParallel; i++ {
 		if globalIsLBP {
-			globalDetect[i] = gocv.DetectInitialize(globalLBPCascadeFile)
+			globalDetect[i] = gocv.DetectionLoadABuf(cascade.MustAsset("lbp_face.xml"))
 		} else {
-			globalDetect[i] = gocv.DetectInitialize(globalHaarCascadeFile)
+			globalDetect[i] = gocv.DetectionLoadABuf(cascade.MustAsset("haar_face_0.xml"))
 		}
 	}
 }

@@ -34,7 +34,7 @@ fmt:
 
 lint:
 	@echo "Running $@:"
-	@${GOPATH}/bin/golint -set_exit_status github.com/minio/xray/cmd...
+	@${GOPATH}/bin/golint github.com/minio/xray/cmd...
 
 ineffassign:
 	@echo "Running $@:"
