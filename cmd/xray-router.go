@@ -22,6 +22,7 @@ package cmd
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"net/http"
 	"sync"
 
@@ -68,8 +69,16 @@ func (v *xrayHandlers) detectObjects(data []byte) {
 		return
 	}
 
-	// Detected faces, decode their positions.
+	// Lookup text.. in the picture and extract them.
+	text := v.lookupText(img)
+	if text != "" {
+		log.Println("Detected textual data", text)
+	}
+
+	// Detect faces and decode their positions.
 	faces := v.lookupFaces(img)
+
+	// Array > 0 means we have detected faces.
 	facesDetected := len(faces) > 0
 	if !facesDetected {
 		v.displayCh <- false
@@ -171,7 +180,6 @@ func newXRayHandlers() *xrayHandlers {
 	displayCh := make(chan bool)
 
 	return &xrayHandlers{
-		clntRespCh:    make(chan interface{}, 15000),
 		displayCh:     displayCh,
 		displayRecvCh: displayMemoryRoutine(displayCh),
 		upgrader: websocket.Upgrader{

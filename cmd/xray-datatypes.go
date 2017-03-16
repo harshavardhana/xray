@@ -19,14 +19,14 @@
 
 package cmd
 
-// Face type..
-type faceType string
+// object type..
+type objectType string
 
 // List of face types.
 const (
-	Unknown      faceType = "unknown"
-	Human        faceType = "human"
-	HumanToddler faceType = "human-toddler"
+	Unknown  objectType = "unknown"
+	Human    objectType = "human"
+	TextOnly objectType = "text"
 )
 
 // Face object contains all the data
