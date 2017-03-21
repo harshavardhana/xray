@@ -111,11 +111,7 @@ func newMinioClient() (*minio.Client, error) {
 	}
 
 	// Check to see if we already own this bucket (which happens if you run this twice)
-	exists, err := minioClient.BucketExists(globalMinioClntConfig.BucketName())
-	if err != nil {
-		return nil, err
-	}
-
+	exists, _ := minioClient.BucketExists(globalMinioClntConfig.BucketName())
 	// Create the bucket if it doesn't exist yet.
 	if !exists {
 		err = minioClient.MakeBucket(globalMinioClntConfig.BucketName(), globalMinioClntConfig.Region())
